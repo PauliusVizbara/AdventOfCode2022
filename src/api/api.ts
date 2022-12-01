@@ -5,6 +5,6 @@ dotenv.config()
 export const getInput = async (day: number) => {
     const url = `https://adventofcode.com/2022/day/${day}/input`
     const res = await fetch(url, { headers: { 'Cookie': `session=${process.env['SESSION']}` } })
-    const data = await (await res.text()).split('\n')
-    return data
+    const data = await res.text()
+    return data.split('\n')
 }
