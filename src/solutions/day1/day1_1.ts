@@ -1,4 +1,4 @@
-import { getInput } from "../../api/api";
+import { getInput } from "../../api/api.js";
 
 export default async () => {
 

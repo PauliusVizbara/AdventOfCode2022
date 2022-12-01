@@ -5,3 +5,5 @@ export const getInput = async (day: number) => {
     const data = await fetch(url)
     console.log(data);
 }
+
+getInput(1)
