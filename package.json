@@ -15,6 +15,7 @@
   },
   "scripts": {
     "start": "nodemon src/solutions/$0/index.ts",
-    "debug": "nodemon --inspect src/solutions/$0/index.ts "
+    "debug": "nodemon --inspect src/solutions/$0/index.ts",
+    "generate": "ts-node src/utils/generation.ts"
   }
 }
