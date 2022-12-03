@@ -1,8 +1,8 @@
 import { writeFileSync, mkdirSync } from 'fs'
 
 const day = process.argv[2]
-const indexContent = `import part1 from './${day}_1.js';
-import part2 from './${day}_2.js'`;
+const indexContent = `import ${day}_1 from './${day}_1.js';
+import ${day}_2 from './${day}_2.js'`;
 
 const puzzleContent = `
 import { getInput } from "../../api/api.js";
