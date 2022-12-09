@@ -9,7 +9,7 @@ import { getInput } from "../../api/api.js";
 
 export default async () => {
 
-    const data = (await getInput(${day[3]}, '\\n'))
+    const data = (await getInput(${day.slice(3)}, '\\n'))
 }`
 
 try {
