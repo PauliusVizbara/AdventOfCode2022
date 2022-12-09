@@ -10,25 +10,18 @@ const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
 export default async () => {
 
     const data = (await getInput(9, '\n')).filter(row => row !== '')
-    // const data = [
-    //     'R 4',
-    //     'U 4',
-    //     'L 3',
-    //     'D 1',
-    //     'R 4',
-    //     'D 1',
-    //     'L 5',
-    //     'R 2',
-    // ]
 
-    let headX = 0
-    let headY = 0
+
+    const startPos = 0
+
+    let headX = startPos
+    let headY = startPos
 
 
     let placesVisited = {};
-    let tailX = 0
-    let tailY = 0
-    placesVisited[`${tailX}${tailY}`] = 1
+    let tailX = startPos
+    let tailY = startPos
+    placesVisited[`${tailX} ${tailY}`] = 1
 
 
     data.forEach((row) => {
@@ -46,7 +39,7 @@ export default async () => {
                 tailY += deltaY
                 // console.log(deltaX, deltaY);
 
-                placesVisited[`${tailX}${tailY}`] = 1
+                placesVisited[`${tailX} ${tailY}`] = 1
             }
         }
 
