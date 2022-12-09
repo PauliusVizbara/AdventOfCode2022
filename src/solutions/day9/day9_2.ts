@@ -41,7 +41,7 @@ export default async () => {
                     knots[j][1] += deltaY
                     // console.log(deltaX, deltaY);
 
-                    if (j === 8) placesVisited[`${knots[j][0]} ${knots[j][1]}`] = 1
+                    if (j === 9) placesVisited[`${knots[j][0]} ${knots[j][1]}`] = 1
                 }
             }
 
