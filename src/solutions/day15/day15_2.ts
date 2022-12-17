@@ -44,29 +44,50 @@ export default async () => {
 
 
 
-    for (let x = 0; x < maxTestedCoordinate; x++) {
-        for (let y = 0; y < maxTestedCoordinate; y++) {
-            index++
-            // const testedPoint = { x, y }
+    let potentialPoints: Point[] = []
+    for (let i = 0; i < locations.length; i++) {
+        const location = locations[i];
 
-            // let isValidLocation = true
-            // for (const location of locations) {
-            //     if (distanceBetweenPoints(testedPoint, location.sensor) <= location.distanceBetween) {
-            //         isValidLocation = false;
-            //         break
-            //     }
-            // }
-
-            // if (isValidLocation) {
-            //     console.log(x, y);
-            // }
+        const sensor = location.sensor
+        const beacon = location.beacon
+        const distanceToBeacon = location.distanceBetween
+        for (let delta = 0; delta <= distanceToBeacon + 1; delta++) {
+            if (i !== 6) continue
+            // potentialPoints.push({ x: sensor.x + distanceToBeacon + 1 - delta, y: sensor.y + distanceToBeacon + 1 - delta })
+            // potentialPoints.push({ x: sensor.x - distanceToBeacon + 1 - delta, y: sensor.y + distanceToBeacon + 1 - delta })
+            // potentialPoints.push({ x: sensor.x + distanceToBeacon + 1 - delta, y: sensor.y - distanceToBeacon + 1 - delta })
+            // potentialPoints.push({ x: sensor.x - distanceToBeacon + 1 - delta, y: sensor.y - distanceToBeacon + 1 - delta })
+            potentialPoints.push({ x: sensor.x - distanceToBeacon - 1 + delta, y: sensor.y + delta })
+            if (delta > 0 && delta < distanceToBeacon + 1)
+                potentialPoints.push({ x: sensor.x - distanceToBeacon - 1 + delta, y: sensor.y - delta })
+            potentialPoints.push({ x: sensor.x + distanceToBeacon + 1 - delta, y: sensor.y + delta })
+            if (delta > 0 && delta < distanceToBeacon + 1)
+                potentialPoints.push({ x: sensor.x + distanceToBeacon + 1 - delta, y: sensor.y - delta })
 
         }
+
+        potentialPoints = potentialPoints.filter((p) => p.x >= 0 && p.y >= 0 && p.x <= maxTestedCoordinate && p.y <= maxTestedCoordinate)
+
+        for (const potentialPoint of potentialPoints) {
+            let isValid = true
+            for (const location of locations) {
+                if (distanceBetweenPoints(potentialPoint, location.sensor) <= location.distanceBetween) {
+                    isValid = false
+                    break
+                }
+            }
+            if (isValid) {
+                console.log(potentialPoint);
+                console.log(potentialPoint.x * 4e6 + potentialPoint.y);
+                break
+            }
+        }
+
     }
 
 
 
 
-    console.log(index);
+
     console.log('Done');
 }   
